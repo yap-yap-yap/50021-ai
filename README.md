@@ -1,0 +1,1 @@
+Repository for assignments for 50021: Artificial Intelligence.
