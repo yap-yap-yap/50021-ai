@@ -10,3 +10,4 @@ File: ``flight_search.py``
 A good choice would be current city and current time. 
 
 ### Part 4
+The method will find the shortest path.

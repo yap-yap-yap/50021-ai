@@ -32,7 +32,7 @@ flightDB = [Flight('Rome', 1, 'Paris', 4),
 # PART 3
 def find_itinerary(start_city, start_time, end_city, deadline):
 
-    frontier = queue.LifoQueue() # breadth first search
+    frontier = queue.LifoQueue() # depth first search
     frontier.put((start_city, start_time, [(start_city, start_time)]))
     while not frontier.empty():
         # take deepest unexplored node
@@ -42,7 +42,7 @@ def find_itinerary(start_city, start_time, end_city, deadline):
 
         # check if it is goal state
         if current_city == end_city:
-            print(current_city)
+            # print(current_city)
             return current_path
 
         # add children to frontier
@@ -54,13 +54,32 @@ def find_itinerary(start_city, start_time, end_city, deadline):
                 # print(child)
                 frontier.put(child)
 
-    return 'no valid itinerary'
+    return False
+
+# PART 4
+def find_shortest_itinerary(start_city, end_city):
+    start_time = 10
+    for flight in flightDB:
+        if flight.start_city == start_city and flight.start_time < start_time:
+            start_time = flight.start_time
+    deadline = start_time
+
+    while deadline <= 10:
+        path = find_itinerary(start_city, start_time, end_city, deadline)
+        if path is not False:
+            return path
+        deadline += 1
+    return False
 
 
 def main():
-    
-    path = find_itinerary('Rome', 1, 'Istanbul', 10) # set parameters here
-    print(path)
+    # path = find_itinerary('Istanbul', 10, 'Constantinople', 10) # PART 3: set parameters here
+    path = find_shortest_itinerary('Rome', 'Istanbul') # PART 4: set parameters here
+
+    if path is False:
+        print('No valid itinerary')
+    else:
+        print(path)
 
 if __name__ == '__main__':
     main()
