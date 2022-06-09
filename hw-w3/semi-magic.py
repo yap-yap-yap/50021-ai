@@ -65,7 +65,7 @@ def solve_semi_magic(algorithm=backtracking_search, **args):
 
 
 def main():
-    solve_semi_magic()
+    solve_semi_magic(algorithm=backtracking_search, select_unassigned_variable=mrv, order_domain_values=lcv, inference=mac)
 
 if __name__ == "__main__":
     main()
