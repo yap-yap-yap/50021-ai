@@ -1,0 +1,4 @@
+(travel tampines bedok)
+(load bedok package1)
+(travel bedok changi)
+(unload changi package1)
